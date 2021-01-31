@@ -19,5 +19,7 @@ int main(int argc, char *argv[])
     WindowAddActivities windowAddActivities;
     windowAddActivities.show();
 
+    // test
+
     return app.exec();
 }
