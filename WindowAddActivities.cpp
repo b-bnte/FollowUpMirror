@@ -6,6 +6,7 @@ WindowAddActivities::WindowAddActivities() : QWidget()
     date = new QDateEdit;
     activity = new QComboBox;
     duration = new QSpinBox;
+    duration->setMaximum(1440); // 1440min = 24h.
 
     // Get all activities for QComboBox (activity).
     for (sActivityMET activityMet : tabActtivityMET)
@@ -20,6 +21,7 @@ WindowAddActivities::WindowAddActivities() : QWidget()
     btn_calculate = new QPushButton("Calculer");
     btn_add = new QPushButton("Ajouter");
     btn_quit = new QPushButton("Quitter");
+    btn_add->setEnabled(false); //avoid adding an activity before calculating calories.
 
     // Creation of Labels.
     label_kcalories = new QLabel("... kcal");
@@ -62,13 +64,30 @@ void WindowAddActivities::calculateCalories()
     // Calculate.
     int res = 70.0 * met * (t/60.0);
     label_kcalories->setText(QString::number(res) + " kcal");
+
+    // Enable button to add a activity in "storage/activity_history.txt".
+    btn_add->setEnabled(true);
 }
 
 void WindowAddActivities::addToDataFileStorage ()
 {
-    std::cout << "add" << std::endl;
-    QFile outputFile("activity_history.txt");
-    outputFile.open(QIODevice::WriteOnly);
-    outputFile.write("data");
-    outputFile.close();
+    QFile file("storage/activity_history.txt");
+    if (!QDir("storage").exists())
+        QDir().mkdir("storage");
+
+    file.open(QIODevice::Append);
+
+    // Date.
+    file.write(date->date().toString(Qt::ISODate).toUtf8() +"\t");
+    // Activity.
+    file.write(tabActtivityMET[activity->currentIndex()].name.toUtf8() + "\t");
+    // Duration.
+    file.write(duration->text().toUtf8() + "\t");
+    // Calories (kcal).
+    file.write(label_kcalories->text().chopped(5).toUtf8() + "\n");
+
+    file.close();
+
+    // Disable button to add a activity in "storage/activity_history.txt".
+    btn_add->setEnabled(false); //avoid adding an activity twice.
 }

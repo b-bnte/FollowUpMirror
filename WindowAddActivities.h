@@ -8,11 +8,14 @@
 #include <QVBoxLayout>
 #include <QFormLayout>
 #include <QDateEdit>
+#include <QDate>
 #include <QGridLayout>
 #include <QSpinBox>
 #include <QComboBox>
 #include <QLabel>
 #include <QFile>
+#include <QDir>
+#include <QDebug>
 
 #include <iostream>
 #include <cmath>
@@ -68,7 +71,6 @@ class WindowAddActivities : public QWidget
         sActivityMET{ "tennis", 7},
         sActivityMET{ "marche", 3}
       };
-
 };
 
 #endif // WINDOWADDACTIVITIES_H
