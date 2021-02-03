@@ -12,6 +12,7 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QDir>
+#include <QString>
 
 class WindowAddMealToHistory : public QWidget
 {

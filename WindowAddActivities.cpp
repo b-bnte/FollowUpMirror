@@ -3,7 +3,7 @@
 WindowAddActivities::WindowAddActivities() : QWidget()
 {
     // Creation of a FormLayout.
-    date = new QDateEdit;
+    date = new QDateEdit(QDate::currentDate());
     activity = new QComboBox;
     duration = new QSpinBox;
     duration->setMaximum(1440); // 1440min = 24h.

@@ -12,6 +12,13 @@
 #include <QLabel>
 #include <QDateTime>
 #include <QTimer>
+#include <QDateTimeEdit>
+#include <QDateEdit>
+#include <QDebug>
+#include <QDate>
+#include <QTextStream>
+#include <QDataStream>
+#include <QProgressBar>
 
 class MainWindow : public QWidget
 {
@@ -25,6 +32,8 @@ class MainWindow : public QWidget
     void launchWindowAddActivities();
     void launchWindowAddMeal();
     void launchWindowAddMealToHistory();
+    void updateDate();
+    void updateProgressBar();
 
     signals:
 
@@ -41,6 +50,7 @@ class MainWindow : public QWidget
     QLabel *label_date;
     QLabel *label_time;
     QLabel *label_weather;
+    QLabel *label_inVsOut;
 
     // Buttons.
     QPushButton *btn_addActivity;
@@ -50,6 +60,11 @@ class MainWindow : public QWidget
     // Clock.
     QTimer *update_time;
 
+    // DateEdit for test and Debug application.
+    QDateEdit *globalDate;
+
+    // ProgressBar for display input/output energy.
+    QProgressBar *proBar_inVsOut;
 };
 
 #endif // MAINWINDOW_H

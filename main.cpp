@@ -14,7 +14,6 @@
 #include <QComboBox>
 #include <QLabel>
 
-
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
@@ -22,6 +21,8 @@ int main(int argc, char *argv[])
     // Test for adding activities.
     //WindowAddMealToHistory windowAddActivities;
     //windowAddActivities.show();
+
+
 
     // Main Window.
     MainWindow mainWindow;

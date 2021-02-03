@@ -3,7 +3,7 @@
 WindowAddMealToHistory::WindowAddMealToHistory() : QWidget()
 {
     // Creation of a FormLayout.
-    date = new QDateEdit;
+    date = new QDateEdit(QDate::currentDate());
     meal = new QComboBox;
 
     // Get all meals to ComboBox.
@@ -31,16 +31,23 @@ WindowAddMealToHistory::WindowAddMealToHistory() : QWidget()
 
 void WindowAddMealToHistory::addToMealToHistory()
 {
-    QFile file("storage/meal_history.txt");
+    QFile file("storage/meal_history.dat");
     if (!QDir("storage").exists())
         QDir().mkdir("storage");
 
     file.open(QIODevice::Append);
 
+    // New version.
+    QDataStream data(&file);
+    data << QDate(date->date());
+    data << QString(meal->currentText());
+
+    /* Old version.
     // Date.
     file.write(date->date().toString(Qt::ISODate).toUtf8() +"\t");
     // Meal.
     file.write(meal->currentText().toUtf8() + "\n");
+    */
 
     file.close();
     this->close();

@@ -1,4 +1,5 @@
 QT += widgets
+QT += network
 
 SOURCES += \
     MainWindow.cpp \
@@ -12,3 +13,5 @@ HEADERS += \
     WindowAddActivities.h \
     WindowAddMeal.h \
     WindowAddMealToHistory.h
+
+DISTFILES +=
