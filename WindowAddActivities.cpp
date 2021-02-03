@@ -41,7 +41,7 @@ WindowAddActivities::WindowAddActivities() : QWidget()
     this->setLayout(layout);
 
     // Signals.
-    QObject::connect(btn_quit, SIGNAL(clicked()), qApp, SLOT(quit()));
+    QObject::connect(btn_quit, SIGNAL(clicked()), this, SLOT(close()));
 
     QObject::connect(activity, SIGNAL(currentIndexChanged(int)), this, SLOT(updateLabelMET(int)));
 
@@ -50,12 +50,12 @@ WindowAddActivities::WindowAddActivities() : QWidget()
     QObject::connect(btn_add, SIGNAL(clicked()), this, SLOT(addToDataFileStorage()));
 }
 
-void WindowAddActivities::updateLabelMET(int index)
+void WindowAddActivities::updateLabelMET (int index)
 {
     label_met->setText("MET : " + QString::number(tabActtivityMET[index].MET));
 }
 
-void WindowAddActivities::calculateCalories()
+void WindowAddActivities::calculateCalories ()
 {
     // Get data.
     float met = tabActtivityMET[activity->currentIndex()].MET;

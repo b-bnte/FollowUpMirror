@@ -1,4 +1,7 @@
 #include "WindowAddActivities.h"
+#include "MainWindow.h"
+#include "WindowAddMeal.h"
+#include "WindowAddMealToHistory.h"
 
 #include <QApplication>
 #include <QLineEdit>
@@ -16,10 +19,13 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    WindowAddActivities windowAddActivities;
-    windowAddActivities.show();
+    // Test for adding activities.
+    //WindowAddMealToHistory windowAddActivities;
+    //windowAddActivities.show();
 
-    // test
+    // Main Window.
+    MainWindow mainWindow;
+    mainWindow.show();
 
     return app.exec();
 }
