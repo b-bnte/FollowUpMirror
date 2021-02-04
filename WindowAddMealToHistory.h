@@ -21,24 +21,18 @@ class WindowAddMealToHistory : public QWidget
     public:
     WindowAddMealToHistory();
 
-    public slots:
+    private slots:
     void addToMealToHistory();
 
-    signals:
-
     private:
-    // Grid Layout (main layout).
-    QGridLayout *layout = new QGridLayout;
-
-    // Creation of a FormLayout.
+    QGridLayout *mainLayout = new QGridLayout;
     QFormLayout *formLayout;
     QDateEdit *date;
     QComboBox *meal;
-
-    // Button.
     QPushButton *btn_add;
 
     // Functions.
+    private:
     void GetMealsToComboBox();
 };
 

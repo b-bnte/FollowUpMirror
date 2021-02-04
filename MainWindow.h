@@ -27,7 +27,7 @@ class MainWindow : public QWidget
     public:
     MainWindow();
 
-    public slots:
+    private slots:
     void updateTime();
     void launchWindowAddActivities();
     void launchWindowAddMeal();
@@ -38,33 +38,22 @@ class MainWindow : public QWidget
     signals:
 
     private:
-    // Windows.
     WindowAddActivities *windowAddActivities;
     WindowAddMeal *windowAddMeal;
     WindowAddMealToHistory *windowAddMealToHistory;
 
-    // Grid Layout (main layout).
-    QGridLayout *layout = new QGridLayout;
-
-    // Labels.
+    QGridLayout *mainLayout = new QGridLayout;
     QLabel *label_date;
     QLabel *label_time;
     QLabel *label_weather;
-    QLabel *label_inVsOut;
-
-    // Buttons.
+    QLabel *label_inVsOutCalories;
     QPushButton *btn_addActivity;
     QPushButton *btn_addMealToList;
     QPushButton *btn_addMealToHistory;
+    QDateEdit *globalDate; // just for Debug.
+    QProgressBar *proBar_inVsOutCalories;
 
-    // Clock.
-    QTimer *update_time;
-
-    // DateEdit for test and Debug application.
-    QDateEdit *globalDate;
-
-    // ProgressBar for display input/output energy.
-    QProgressBar *proBar_inVsOut;
+    QTimer *oneSecondTimer;
 };
 
 #endif // MAINWINDOW_H

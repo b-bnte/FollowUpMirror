@@ -1,8 +1,6 @@
 #include "WindowAddMeal.h"
 
-WindowAddMeal::WindowAddMeal() : QWidget()
-{
-    // Creation of a FormLayout.
+WindowAddMeal::WindowAddMeal() : QWidget() {
     name = new QLineEdit;
     calories = new QSpinBox;
     carbs = new QSpinBox;
@@ -16,7 +14,6 @@ WindowAddMeal::WindowAddMeal() : QWidget()
     protein->setMaximum(900);
     lipid->setMaximum(900);
 
-    // Add to FormLayout.
     formLayout = new QFormLayout;
     formLayout->addRow("name", name);
     formLayout->addRow("calories (kcal)", calories);
@@ -31,8 +28,7 @@ WindowAddMeal::WindowAddMeal() : QWidget()
     QObject::connect(btn_add, SIGNAL(clicked()), this, SLOT(addToMealList()));
 }
 
-void WindowAddMeal::addToMealList()
-{
+void WindowAddMeal::addToMealList() {
     QFile file("storage/meal_list.txt");
     if (!QDir("storage").exists())
         QDir().mkdir("storage");

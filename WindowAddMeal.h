@@ -19,13 +19,10 @@ class WindowAddMeal : public QWidget
     public:
     WindowAddMeal();
 
-    public slots:
+    private slots:
     void addToMealList();
 
-    signals:
-
     private:
-    // Creation of a FormLayout.
     QFormLayout *formLayout;
     QLineEdit *name;
     QSpinBox *calories;

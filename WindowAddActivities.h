@@ -17,9 +17,6 @@
 #include <QDir>
 #include <QDebug>
 
-#include <iostream>
-#include <cmath>
-
 class WindowAddActivities : public QWidget
 {
     Q_OBJECT
@@ -27,31 +24,22 @@ class WindowAddActivities : public QWidget
     public:
     WindowAddActivities();
 
-    public slots:
+    private slots:
     void updateLabelMET (int index);
     void calculateCalories ();
     void addToDataFileStorage ();
 
-    signals:
-
     private:
-    // Grid Layout (main layout).
-    QGridLayout *layout = new QGridLayout;
-
-    // Creation of a FormLayout.
+    QGridLayout *mainLayout;
     QFormLayout *formLayout;
     QDateEdit *date;
     QComboBox *activity;
     QSpinBox *duration;
-
-    // Buttons.
-    QPushButton *btn_calculate = new QPushButton("Calculer");
-    QPushButton *btn_add = new QPushButton("Ajouter");
-    QPushButton *btn_quit = new QPushButton("Quitter");
-
-    // Labels
-    QLabel *label_kcalories = new QLabel("... kcal");
-    QLabel *label_met = new QLabel("MET : ...");
+    QPushButton *btn_calculate;
+    QPushButton *btn_add;
+    QPushButton *btn_quit;
+    QLabel *label_kcalories;
+    QLabel *label_met;
 
     // Activity & Mets.
     struct sActivityMET {
@@ -59,9 +47,8 @@ class WindowAddActivities : public QWidget
         float MET;
     };
 
-    std::array<sActivityMET, 10> tabActtivityMET = {
+    std::array<sActivityMET, 9> tabActtivityMET = {
         sActivityMET{ "cyclisme" , 8},
-        sActivityMET{ "course à pied", 8},
         sActivityMET{ "dormir", 0.9},
         sActivityMET{ "pêche", 3},
         sActivityMET{ "basketball", 6},
