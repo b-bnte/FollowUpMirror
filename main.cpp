@@ -17,7 +17,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-
+//vouovuo
     MainWindow mainWindow;
     mainWindow.show();
 
