@@ -56,22 +56,55 @@ void WindowAddActivities::calculateCalories() {
 }
 
 void WindowAddActivities::addToDataFileStorage() {
-    QFile file("storage/activity_history.txt");
+    QFile file("storage/activity_history.dat");
     if (!QDir("storage").exists())
         QDir().mkdir("storage");
 
     file.open(QIODevice::Append);
 
-    // Date.
+    // New version.
+    QDataStream data(&file);
+    data << QDate(date->date());
+    data << QString(tabActtivityMET[activity->currentIndex()].name);
+    data << int(duration->value());
+    data << int(label_kcalories->text().chopped(5).toInt());
+
+    // Old versions.
+    /*// Date.
     file.write(date->date().toString(Qt::ISODate).toUtf8() +"\t");
     // Activity.
     file.write(tabActtivityMET[activity->currentIndex()].name.toUtf8() + "\t");
     // Duration.
     file.write(duration->text().toUtf8() + "\t");
     // Calories (kcal).
-    file.write(label_kcalories->text().chopped(5).toUtf8() + "\n");
+    file.write(label_kcalories->text().chopped(5).toUtf8() + "\n");*/
 
     file.close();
+
+    // Help to reading a line from "storage/activity_history.dat".
+    file.open(QIODevice::ReadOnly);
+
+    QDataStream dataRead(&file);
+    QDate dateRead;
+    QString typeOfActivityRead;
+    int durationOfActivityRead;
+    int kcaloriesOfActivityRead;
+
+    while (!data.atEnd()) {
+        dataRead >> dateRead;
+        qDebug () << dateRead;
+
+        dataRead >> typeOfActivityRead;
+        qDebug () << typeOfActivityRead;
+
+        dataRead >> durationOfActivityRead;
+        qDebug () << durationOfActivityRead << "min";
+
+        dataRead >> kcaloriesOfActivityRead;
+        qDebug () << kcaloriesOfActivityRead << "kcal";
+
+        qDebug () << "------";
+    }
 
     // Disable button to add a activity in "storage/activity_history.txt".
     btn_add->setEnabled(false); //avoid adding an activity twice.
