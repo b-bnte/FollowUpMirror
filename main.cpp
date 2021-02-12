@@ -2,6 +2,7 @@
 #include "MainWindow.h"
 #include "WindowAddMeal.h"
 #include "WindowAddMealToHistory.h"
+#include "WindowActivitiesHistory.h"
 
 #include <QApplication>
 #include <QLineEdit>
@@ -20,6 +21,11 @@ int main(int argc, char *argv[])
 
     MainWindow mainWindow;
     mainWindow.show();
+
+    WindowActivitiesHistory WindowActivitiesHistory;
+    WindowActivitiesHistory.show();
+
+
 
     return app.exec();
 }
